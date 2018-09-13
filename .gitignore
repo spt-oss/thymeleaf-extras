@@ -1,0 +1,14 @@
+.checkstyle
+.classpath
+.project
+.settings
+
+target
+
+*.bak
+*.jar
+*-my.xml
+*-my.yml
+
+pom.xml.*
+rebel.xml

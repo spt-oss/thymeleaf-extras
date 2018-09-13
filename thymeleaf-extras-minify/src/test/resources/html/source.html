@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- head -->
+
+<head>
+	<meta charset="utf-8" />
+	<title th:text="bar">foo</title>
+	
+	<style>
+	<!--
+	body {
+		font-size: 1rem;
+	}
+	-->
+	</style>
+	
+	<style>
+	.foo {
+		font-size: 1rem;
+	}
+	</style>
+	
+</head>
+
+<!-- body -->
+
+<body>
+
+<div  class="foo">
+	bar	baz
+	<div>
+		<span>	qux	</span>
+	</div>
+</div>
+
+<div>
+    <span > bar </span>
+    <span>
+        baz
+    </span>
+</div>
+
+<script>
+$(function() {
+	
+	var foo =  'foo';
+	
+	console.log(foo);
+});
+</script>
+
+</body>
+
+</html>

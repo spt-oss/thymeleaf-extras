@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.github.spt-oss</groupId>
+		<artifactId>spt-parent</artifactId>
+		<version>2.0.5.0</version>
+	</parent>
+
+	<artifactId>thymeleaf-extras</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<description>Thymeleaf extra modules for customizing templates</description>
+	<url>https://github.com/spt-oss/thymeleaf-extras</url>
+	<inceptionYear>2018</inceptionYear>
+
+	<modules>
+		<module>thymeleaf-extras-minify</module>
+	</modules>
+
+	<scm>
+		<url>https://github.com/spt-oss/thymeleaf-extras/tree/master</url>
+		<connection>scm:git:git@github.com:spt-oss/thymeleaf-extras.git</connection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<properties>
+		<spt-checkstyle.version>8.12.0</spt-checkstyle.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/groups/staging</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<configLocation>spt/checkstyle/checks.xml</configLocation>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.github.spt-oss</groupId>
+						<artifactId>spt-checkstyle</artifactId>
+						<version>${spt-checkstyle.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>gpg</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

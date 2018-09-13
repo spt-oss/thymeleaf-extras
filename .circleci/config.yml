@@ -1,0 +1,41 @@
+version: 2
+
+settings: &settings
+    working_directory: ~/thymeleaf-extras
+    docker:
+        - image: circleci/openjdk:8-jdk
+
+jobs:
+    build:
+        <<: *settings
+        steps:
+            - checkout:
+                path: ~/thymeleaf-extras
+            - run: |
+                curl -fsSL https://spt.page.link/ci-install-command-sh | \
+                    bash -s -- git,mvn
+            - run: |
+                git-config-user "${GIT_USERNAME}" ${GIT_EMAIL}
+            - restore_cache:
+                keys:
+                    - cache-{{ .Branch }}
+            - run: |
+                mvn-settings sonatype ${MAVEN_USERNAME} ${MAVEN_PASSWORD}
+            - run: |
+                mvn-go-offline
+            - save_cache:
+                paths:
+                    - ~/.m2
+                key: cache-{{ .Branch }}
+            - run: |
+                mvn-license-format
+            - run: |
+                git-push-all 'Update license headers [ci skip]' || true
+            - run: |
+                mvn-test
+            - run: |
+                curl -fsSL https://spt.page.link/ci-install-gpg-key-sh | \
+                    bash -s -- https://spt.page.link/parent-pubring-gpg-enc ${OPENSSL_PASSWORD}
+            - run: |
+                curl -fsSL https://spt.page.link/parent-mvn-deploy-sh | \
+                    bash -s -- ${CIRCLE_BRANCH} ${GPG_PASSWORD} ${VERSION:-}
