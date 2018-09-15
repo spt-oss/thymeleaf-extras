@@ -117,12 +117,14 @@ public class SimpleMinifierTemplateHandler extends AbstractMinifierTemplateHandl
 	@Override
 	protected String minifyInlineStyle(String value) {
 		
+		// TODO remove comment
 		return this.minifyTextInternal(value);
 	}
 	
 	@Override
 	protected String minifyInlineScript(String value) {
 		
+		// TODO remove comment
 		return this.minifyTextInternal(value);
 	}
 	

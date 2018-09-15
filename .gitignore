@@ -4,11 +4,7 @@
 .settings
 
 target
+pom.xml.*
 
-*.bak
-*.jar
 *-my.xml
 *-my.yml
-
-pom.xml.*
-rebel.xml

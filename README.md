@@ -4,16 +4,12 @@
 [![maven central](https://img.shields.io/badge/maven_central-thymeleaf--extras-blue.svg)](https://mvnrepository.com/artifact/com.github.spt-oss/thymeleaf-extras)
 [![javadoc](https://img.shields.io/badge/javadoc-thymeleaf--extras-blue.svg)](https://www.javadoc.io/doc/com.github.spt-oss/thymeleaf-extras)
 
-* Thymeleaf extra modules for customizing templates
-* ⚠️**This project is unofficial and experimental.**
+* [Thymeleaf](https://github.com/thymeleaf/thymeleaf) extra modules for customizing templates
+* **Note: This project is unofficial and experimental.**
 
 ## TOC
 
 * [thymeleaf-extras-minify](#thymeleaf-extras-minify)
-	* [Example](#example)
-	* [Usage](#usage)
-	* [Customization](#customization)
-	* [References](#references)
 * [License](#license)
 
 ## thymeleaf-extras-minify
@@ -34,11 +30,11 @@
 	      font-size: 1rem;
 	    }
 	    </style>
-	...
+	......
 	```
 * Processed HTML
 	```html
-	<!DOCTYPE html><html><head><meta charset="utf-8" /><title>bar</title><style>body { font-size: 1rem; }</style>...
+	<!DOCTYPE html><html><head><meta charset="utf-8" /><title>bar</title><style>body { font-size: 1rem; }</style>......
 	```
 
 ### Usage
@@ -47,13 +43,13 @@
 
 	```xml
 	<dependency>
-		<groupId>com.github.spt-oss</groupId>
-		<artifactId>thymeleaf-extras-minify</artifactId>
-		<version>0.1.0</version>
+	    <groupId>com.github.spt-oss</groupId>
+	    <artifactId>thymeleaf-extras-minify</artifactId>
+	    <version>3.0.11.0</version>
 	</dependency>
 	```
 
-2. Add the `MinifierDialect` to the `TemplateEngine` instance.
+1. Add the `MinifierDialect` to the `TemplateEngine` instance.
 
 	```java
 	import org.thymeleaf.TemplateEngine;
@@ -63,44 +59,54 @@
 	engine.addDialect(new MinifierDialect());
 	```
 
-3. Or create Spring Bean if your project is based on Spring Boot.
+1. Or setup Spring configurations if your project is based on Spring Boot.
 
+	```yml
+	spring.thymeleaf:
+	    prefix: classpath:/templates/
+	```
 	```java
 	import org.springframework.context.annotation.Bean;
 	import org.thymeleaf.extras.minify.dialect.MinifierDialect;
 	
 	@Bean
 	public MinifierDialect minifierDialect() {
-		return new MinifierDialect();
+	    return new MinifierDialect();
 	}
 	```
 
 ### Customization
 
 1. Create a subclass of 
-[SimpleMinifierTemplateHandler](./thymeleaf-extras-minify/src/main/java/org/thymeleaf/extras/minify/engine/SimpleMinifierTemplateHandler.java) 
-or 
-[AbstractMinifierTemplateHandler](./thymeleaf-extras-minify/src/main/java/org/thymeleaf/extras/minify/engine/AbstractMinifierTemplateHandler.java).
+[AbstractMinifierTemplateHandler](./thymeleaf-extras-minify/src/main/java/org/thymeleaf/extras/minify/engine/AbstractMinifierTemplateHandler.java) 
+ or 
+[SimpleMinifierTemplateHandler](./thymeleaf-extras-minify/src/main/java/org/thymeleaf/extras/minify/engine/SimpleMinifierTemplateHandler.java).
 
 	```java
 	package my.project;
 	
-	import org.thymeleaf.extras.minify.engine.SimpleMinifierTemplateHandler;
+	import org.thymeleaf.extras.minify.engine.AbstractMinifierTemplateHandler;
 	
-	public class CustomMinifierTemplateHandler extends SimpleMinifierTemplateHandler {
-		......
+	public class MyMinifierTemplateHandler extends AbstractMinifierTemplateHandler {
+	    ......
 	}
 	```
 
-2. Set the class to the first argument of the dialect.
+1. Set the class to the first argument of the `MinifierDialect`. Note that only class type is accepted because of Thymeleaf processor's restriction.
 
 	```java
-	import org.thymeleaf.TemplateEngine;
-	import org.thymeleaf.extras.minify.dialect.MinifierDialect;
-	import my.project.CustomMinifierTemplateHandler;
+	import my.project.MyMinifierTemplateHandler;
 	
 	TemplateEngine engine = new TemplateEngine();
-	engine.addDialect(new MinifierDialect(CustomMinifierTemplateHandler.class));
+	engine.addDialect(new MinifierDialect(MyMinifierTemplateHandler.class));
+	```
+	```java
+	import my.project.MyMinifierTemplateHandler;
+	
+	@Bean
+	public MinifierDialect minifierDialect() {
+	    return new MinifierDialect(MyMinifierTemplateHandler.class);
+	}
 	```
 
 ### References
