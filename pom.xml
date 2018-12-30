@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>thymeleaf-extras-parent</artifactId>
-	<version>3.0.11.0-SNAPSHOT</version>
+	<version>3.0.11.0</version>
 	<packaging>pom</packaging>
 
 	<name>Thymeleaf Extras</name>
@@ -25,7 +25,7 @@
 	<scm>
 		<url>https://github.com/spt-oss/thymeleaf-extras/tree/master</url>
 		<connection>scm:git:git@github.com:spt-oss/thymeleaf-extras.git</connection>
-		<tag>HEAD</tag>
+		<tag>3.0.11.0</tag>
 	</scm>
 
 	<properties>
