@@ -29,8 +29,8 @@
 	</scm>
 
 	<properties>
-		<spring-boot.version>2.0.6.RELEASE</spring-boot.version>
-		<spt-checkstyle.version>8.15.0</spt-checkstyle.version>
+		<spring-boot.version>2.1.5.RELEASE</spring-boot.version>
+		<spt-checkstyle.version>8.21.0-SNAPSHOT</spt-checkstyle.version>
 		<thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
 	</properties>
 
