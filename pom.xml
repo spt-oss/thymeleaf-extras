@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.github.spt-oss</groupId>
 		<artifactId>spt-oss-parent</artifactId>
-		<version>8.0.0</version>
+		<version>8.0.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>thymeleaf-extras-parent</artifactId>

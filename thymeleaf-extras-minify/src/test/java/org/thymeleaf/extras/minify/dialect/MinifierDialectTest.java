@@ -32,7 +32,7 @@ import org.thymeleaf.extras.minify.engine.SimpleMinifierTemplateHandler;
 /**
  * {@link Test}: {@link MinifierDialect}
  */
-public class MinifierDialectTests {
+public class MinifierDialectTest {
 	
 	/**
 	 * Execute
